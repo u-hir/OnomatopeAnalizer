@@ -19,6 +19,8 @@ def get_ameba(query):
     # cssのクラスがdescriptionなら
     if css_class != "None" and css_class == "description":
       description_text = lxml.html.tostring(paragraph, method='text', encoding='utf-8') #テキストを文字列型で取得する
+      description_text = description_text.replace('\n', '')
+      description_text = description_text.replace('\r', '')
       descriptions.append(description_text)
   return descriptions
 
