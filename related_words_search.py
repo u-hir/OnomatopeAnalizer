@@ -29,18 +29,22 @@ def main():
         replaced_sentence = replace_word(word, sentence)
         print(replaced_sentence)
 
+ 
 #スニペットを一文ずつに切り分けしてリストで返す
 def split_snippet(snippet):
     sentences = re.split("。|\?|？|!|！|･|⁈|「|」|\s", snippet)
     return sentences
 
+
 #指定した文字列を含むリストの要素を抽出し、リストで返す
 def extract_sentence(word, sentences):
     for sentence in sentences:
         if word in sentence:
+            print sentence
             return str(sentence)
 
     return ""
+
 
 #指定文字を四角記号に置き換えして返す
 def replace_word(word, sentence):
