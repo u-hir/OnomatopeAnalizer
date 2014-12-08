@@ -7,7 +7,7 @@ import lxml.html
 def get_ameba(query):
   encoded_query = urllib2.quote(query) #クエリをURLの%xxに置換
   # ameba検索の検索URLを作成
-  ameba_search_url = "http://search.ameba.jp/search.html?q="+query+"&row=300&profileRow=&target=blog&aid=&author=all&start=0"
+  ameba_search_url = "http://search.ameba.jp/search.html?q="+encoded_query+"&row=300&profileRow=&target=blog&aid=&author=all&start=0"
   html = urllib2.urlopen(ameba_search_url).read() # html 取得
   root = lxml.html.fromstring(html) # ルート要素
   paragraphs = root.xpath('//p') # p要素をリストとして全て取得
