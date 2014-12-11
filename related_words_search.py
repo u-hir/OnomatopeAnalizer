@@ -18,7 +18,7 @@ onomatopoeia = re.split('\/|\.', filename)[1]
 
 
 def main():
-    if (len(sys.argv)!=3):
+    if (len(sys.argv)<=2):
         print("1番目の引数にファイル名、\n2番目の引数に置換したい文字列を指定してください。")
         sys.exit()
     file_name = str(sys.argv[1]) # 1番目のコマンドライン引数

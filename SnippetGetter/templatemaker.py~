@@ -1,0 +1,21 @@
+# coding: UTF-8
+import CaboCha
+import sys
+import os
+import re
+#txtを読んでオノマトペを含む一文を取り出し
+
+c = CaboCha.Parser()
+#ファイルネームからオノマトペ取り出し
+filename = sys.argv[1]
+onomatopoeia = re.split('\/|\.', filename)[1]
+
+txt = open(sys.argv[1])
+snippets = txt.readlines()
+for snippet in snippets:
+    sentences = re.split('。| |、',str(snippet))
+    for sentence in sentences:
+        if onomatopoeia in sentence:
+            print sentence
+        #else:
+            #print 'false'

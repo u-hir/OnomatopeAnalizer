@@ -1,0 +1,7 @@
+# coding: utf-8
+import SnippetGetter as Snip
+import os
+
+snippets = Snip.get_ameba(["雨", "ざあざあ"])
+for snippet in snippets:
+  print(snippet)
