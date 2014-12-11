@@ -1,0 +1,5 @@
+# cording: UTF-8
+
+txt = open(onomatope+'.txt', 'w')
+txt.write(str(snippet))
+txt.close()
