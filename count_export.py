@@ -54,20 +54,19 @@ if __name__ == '__main__':
         if v >= 10:
             print "%s , %d" %(k,v)
             nounstr = str("%s , %d" %(k,v))
-            print nounstr
-            
+            print "ok"
 #ファイル名指定を記述        dic+"名詞.txt"
 #ファイルに書く内容        write(dic+"名詞.txt", w)
 
 
     for k, v in sorted(actDic.items(),key=lambda x : x[1],reverse=True):
-        # if v >= 10:
+        #---- if v >= 10:
         nounstr = str("%s , %d" %(k,v)
 
 
     for k, v in sorted(adjectDic.items(),key=lambda x : x[1],reverse=True):
         if v >= 10:
             print "%s , %d" %(k,v)
-#            nounstr = str("%s , %d" %(k,v))
+            nounstr = str("%s , %d" %(k,v))
 
 #    print nounDic['*']
