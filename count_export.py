@@ -2,10 +2,19 @@
 import MeCab
 import sys
 import re
+import os
 
 
 #1行1ツイートのテキストを読んで、名詞、動詞、形容詞に分解し、各単語の出現回数を数えるプログラム
 #カウント後に表示される各単語は基本形に直している
+
+#コマンドライン引数からオノマトペを取得し保存ディレクトリ作成
+def mkdir():
+    filename = sys.argv[1]
+    splitname = filename.split(".")
+    print splitname[0]
+    os.mkdir(splitname[0])
+
 def main(path):
     #MeCabを使う
     m = MeCab.Tagger('-Ochasen')
@@ -45,6 +54,7 @@ def main(path):
 #メイン。指定されたファイルをdef mainにかけて、結果をprintする。
 #この結果をリダイレクトしてcsvを生成していた。
 if __name__ == '__main__':
+    mkdir()
     dic = main(sys.argv[1])
     nounDic = dic[0]
     actDic = dic[1]

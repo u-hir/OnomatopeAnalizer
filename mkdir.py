@@ -1,7 +1,7 @@
 import os
 import sys
 
-def mkdird():
+def mkdir():
     filename = sys.argv[1]
     splitname = filename.split(".")
     print splitname[0]
@@ -9,5 +9,6 @@ def mkdird():
 
 if __name__ == '__main__':
     mkdir()
+
 #for文でスニペットを読んでファイルに書き出し
 #    for 
