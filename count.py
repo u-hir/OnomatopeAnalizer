@@ -1,8 +1,6 @@
 # -*- coding:utf-8 -*-
 import MeCab
 import sys
-import re
-
 
 #1行1ツイートのテキストを読んで、名詞、動詞、形容詞に分解し、各単語の出現回数を数えるプログラム
 #カウント後に表示される各単語は基本形に直している
@@ -21,8 +19,8 @@ def main(path):
 
     #文書読み込み
     lines = open(path,"r").readlines()
-    for l in lines:
-        node = m.parseToNode(l)
+    for line in lines:
+        node = m.parseToNode(line)
         while node:
             #featureはMeCabにかけて取れた品詞名などのこと。「,」区切りになってる
             features = node.feature.split(',')
@@ -30,6 +28,8 @@ def main(path):
             noun = features[0]
             #feature[6]はその単語の基本形が書かれている
             basic = features[6]
+            if basic == '*': # 基本形が*の場合は記号なので、飛ばす
+                continue
             #nounが名詞だった場合、名詞のカウンタを一つ回す
             if noun == "名詞":
                 nouns.setdefault(basic, 0)
@@ -59,20 +59,19 @@ if __name__ == '__main__':
     adverbDic = dic[3]
 
     for k, v in sorted(nounDic.items(),key=lambda x : int(x[1]),reverse=True):
-        if v >= 5:
+        #if v >= 5:
             print "%s , %d, 名詞" %(k,v)
 
 
     for k, v in sorted(actDic.items(),key=lambda x : int(x[1]),reverse=True):
-        if v >= 5:
+        #if v >= 5:
             print "%s , %d , 動詞" %(k,v)
 
 
     for k, v in sorted(adjectDic.items(),key=lambda x : int(x[1]),reverse=True):
-        if v >= 5:
+        #if v >= 5:
             print "%s , %d , 形容詞" %(k,v)
 
     for k, v in sorted(adverbDic.items(),key=lambda x : int(x[1]),reverse=True):
-        if v >= 5:
+        #if v >= 5:
             print "%s , %d , 副詞" %(k,v)
-
