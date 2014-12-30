@@ -57,13 +57,17 @@ def get_word_dics(lines, filename):
                 adverb_count_dic[basic_type] += 1
             node = node.next
     for k, v in nouns_count_dic.items():
-        nouns_freq_dic.setdefault(k, float(v)/len(lines))
+        if int(v) != 1:
+            nouns_freq_dic.setdefault(k, float(v)/len(lines))
     for k, v in act_count_dic.items():
-        act_freq_dic.setdefault(k, float(v)/len(lines))
+        if int(v) != 1:
+            act_freq_dic.setdefault(k, float(v)/len(lines))
     for k, v in adject_count_dic.items():
-        adject_freq_dic.setdefault(k, float(v)/len(lines))
+        if int(v) != 1:
+            adject_freq_dic.setdefault(k, float(v)/len(lines))
     for k, v in adverb_count_dic.items():
-        adverb_freq_dic.setdefault(k, float(v)/len(lines))
+        if int(v) != 1:
+            adverb_freq_dic.setdefault(k, float(v)/len(lines))
 
     return nouns_freq_dic, act_freq_dic, adject_freq_dic, adverb_freq_dic
 
