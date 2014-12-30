@@ -3,11 +3,6 @@ import sys
 import re
 import glob
 def main():
-    #if (len(sys.argv)<=2):
-    #    print("1番目の引数にファイル名、\n2番目の引数に置換したい文字列を指定してください。")
-    #    sys.exit()
-    # file_name = str(sys.argv[1]) # 1番目のコマンドライン引数
-    # word = str(sys.argv[2]) # 2番目のコマンドライン引数
     # スニペットファイルのパスを取得
     snip_paths = glob.glob('snippets/*/*/*.txt')
 
