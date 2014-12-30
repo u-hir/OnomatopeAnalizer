@@ -51,18 +51,18 @@ if __name__ == '__main__':
     actDic = dic[1]
     adjectDic = dic[2]
 
-    for k, v in sorted(nounDic.items(),key=lambda x : x[1],reverse=True):
-        if v >= 10:
+    for k, v in sorted(nounDic.items(),key=lambda x : int(x[1]),reverse=True):
+        if v >= 5:
             print "%s , %d" %(k,v)
 
 
-    for k, v in sorted(actDic.items(),key=lambda x : x[1],reverse=True):
-        # if v >= 10:
-        print "%s , %d" %(k,v)
+    for k, v in sorted(actDic.items(),key=lambda x : int(x[1]),reverse=True):
+        if v >= 5:
+            print "%s , %d" %(k,v)
 
 
-    for k, v in sorted(adjectDic.items(),key=lambda x : x[1],reverse=True):
-        if v >= 10:
+    for k, v in sorted(adjectDic.items(),key=lambda x : int(x[1]),reverse=True):
+        if v >= 5:
             print "%s , %d" %(k,v)
 
 

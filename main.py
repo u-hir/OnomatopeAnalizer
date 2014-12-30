@@ -11,8 +11,10 @@ from time import sleep
 #walkrun = ["うろうろ", "えっちらおっちら", "かっぽかっぽ", "さっさ", "さっさっ", "しゃなりしゃなり", "しゃらりしゃらり", "すたこら", "すたこらさっさ","すたすた", "せかせか", "たー", "たたーっ", "たかたか", "たじたじ", "だだーっ", "たたたた", "だだだだ", "たったかたったか", "たったっ", "たどたど", "ちょこちょこ", "てくてく", "てけてけ", "どっしどっし", "とーん", "とことこ", "とっとことっとこ", "とっと", "とっとっ", "ととと", "どたばた", "とぼとぼ", "のさのさ", "のしのし", "のそのそ", "のっしのっし", "のらりのらり", "のろのろ", "のろりのろり", "ぱかぱか", "ぱっぱか", "ぱたぱた", "ばたばた", "ぴたぴた", "ひょこひょこ", "ふらふら", "ぶらぶら", "よたよた", "よちよち", "よぼよぼ", "よろよろ", "らったった", "わたわた", "のこのこ", "ぱっぱ"]
 #onomatopoeias = ["びゅうびゅう", "ざあざあ", "てくてく", "がたがた"]
 
+#onoclasslist = ["samui,tumetai", "suiteki,sitataru,otiru,haneru", "nagareru,tareru,sosogu", "simeru,nijimu", "nureru"]
 
-onoclasslist = ["samui,tumetai", "suiteki,sitataru,otiru,haneru", "nagareru,tareru,sosogu", "simeru,nijimu", "nureru"]
+onoclasslist = ["awateru,mogaku,otitukanai", "genkiganai", "genkina", "haku,modosu", "hatarakanai", "heiki,heizen", "hurueru", "hutotta,gankenna", "itamu", "iu,hanasu", "miru,mieru,niramu", "naku", "nemuru,neru", "nomu,you", "odoroku", "okiru,tatu", "okoru,hukigen,buaisou", "omou,kanjiru", "sawagu", "sekiwosuru,museru", "taberu,kamu,nameru", "tamerau,hirumu", "tukareru", "warau", "yaseta", "yorokobu"]
+
 
 def main(onomatope):
 #  for onomatope in onomatopoeias:
