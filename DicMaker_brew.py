@@ -22,7 +22,7 @@ def main():
 		print(dic_line)
 		output_file.write(dic_line)
 	output_file.close()
-	message = commands.getoutput("/opt/local/libexec/mecab/mecab-dict-index -d /opt/local/lib/mecab/dic/ipadic-utf8 -u userdic.dic -f utf-8 -t utf-8 userdic.txt")
+	message = commands.getoutput("/usr/local/Cellar/mecab/0.996/libexec/mecab/mecab-dict-index -d /usr/local/Cellar/mecab/0.996/lib/mecab/dic/ipadic -u userdic.dic -f utf-8 -t utf-8 userdic.txt")
 	print message
 
 if (__name__ == '__main__'):
