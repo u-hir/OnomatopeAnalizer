@@ -16,6 +16,8 @@ def main(path):
     act = {}
     #形容詞格納用dic
     adject = {}
+    #副詞格納用dic
+    adverb = {}
 
     #文書読み込み
     lines = open(path,"r").readlines()
@@ -38,9 +40,13 @@ def main(path):
             if noun == "形容詞":
                 adject.setdefault(basic, 0)
                 adject[basic] += 1
+            if noun == "副詞":
+                adverb.setdefault(basic, 0)
+                adverb[basic] += 1
+
             node = node.next
 
-    return nouns, act, adject
+    return nouns, act, adject, adverb
 
 
 #メイン。指定されたファイルをdef mainにかけて、結果をprintする。
@@ -50,20 +56,23 @@ if __name__ == '__main__':
     nounDic = dic[0]
     actDic = dic[1]
     adjectDic = dic[2]
+    adverbDic = dic[3]
 
-    for k, v in sorted(nounDic.items(),key=lambda x : x[1],reverse=True):
-        if v >= 10:
-            print "%s , %d" %(k,v)
-
-
-    for k, v in sorted(actDic.items(),key=lambda x : x[1],reverse=True):
-        # if v >= 10:
-        print "%s , %d" %(k,v)
+    for k, v in sorted(nounDic.items(),key=lambda x : int(x[1]),reverse=True):
+        if v >= 5:
+            print "%s , %d, 名詞" %(k,v)
 
 
-    for k, v in sorted(adjectDic.items(),key=lambda x : x[1],reverse=True):
-        if v >= 10:
-            print "%s , %d" %(k,v)
+    for k, v in sorted(actDic.items(),key=lambda x : int(x[1]),reverse=True):
+        if v >= 5:
+            print "%s , %d , 動詞" %(k,v)
 
 
-#    print nounDic['*']
+    for k, v in sorted(adjectDic.items(),key=lambda x : int(x[1]),reverse=True):
+        if v >= 5:
+            print "%s , %d , 形容詞" %(k,v)
+
+    for k, v in sorted(adverbDic.items(),key=lambda x : int(x[1]),reverse=True):
+        if v >= 5:
+            print "%s , %d , 副詞" %(k,v)
+
