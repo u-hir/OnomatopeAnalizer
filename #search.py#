@@ -5,7 +5,7 @@ import glob
 #引数に語句を入力し、.csvから検索
 
 def search(w):
-    
+    snip_paths = glob.glob('snippets/*/*/*.txt')
 
 
 if (__name__ == '__main__'):
