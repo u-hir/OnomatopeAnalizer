@@ -6,9 +6,8 @@ def main():
     # 読み込むファイルのパスを取得
     sentence_paths = glob.glob('sentences/*.txt')
     sentence_paths = filter_file(sentence_paths) # 50行未満のファイルを削除
-    filenames = get_filename(sentence_paths)
-    for i, sentence_path in enumerate(sentence_paths):
-        filename = filenames[i]
+    for sentence_path in sentence_paths:
+        filename = get_filename(sentence_path)
         sentence_file = open(sentence_path, 'r')
         lines = sentence_file.readlines()
         word_dics = get_word_dics(lines, filename)
@@ -98,16 +97,13 @@ def export_tf_csv(word_dics, filename):
 def is_aster_or_filename(basic_type, filename):
     return basic_type == '*' or basic_type == filename
 
-def get_filename(paths):
+def get_filename(path):
     # パスからファイル名を取得
-    filenames = []
-    for path in paths:
-        path_splits = path.split("/") # パスの文字列を/で区切る
-        txt_name = path_splits[-1] # 最後の要素が*.txt形式のファイル名
-        txt_name_splits = txt_name.split(".")
-        filename = txt_name_splits[0]
-        filenames.append(filename)
-    return filenames
+    path_splits = path.split("/") # パスの文字列を/で区切る
+    txt_name = path_splits[-1] # 最後の要素が*.txt形式のファイル名
+    txt_name_splits = txt_name.split(".")
+    filename = txt_name_splits[0]
+    return filename
 
 def filter_file(paths):
     filtered_paths = []
