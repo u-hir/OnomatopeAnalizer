@@ -7,10 +7,13 @@ def main():
     # 読み込むファイルのパスを取得
     sentence_paths = glob.glob('sentences/*.txt')
     sentence_paths = filter_file(sentence_paths) # 50行未満のファイルを削除
+    line_len_filename = "lines_len.csv"
+    reset_file(line_len_filename)
     for sentence_path in sentence_paths:
         filename = get_filename(sentence_path)
         sentence_file = open(sentence_path, 'r')
         lines = sentence_file.readlines()
+        export_line_len_csv(len(lines), filename, line_len_filename)
         word_dics = get_word_dics(lines, filename)
         export_tf_csv(word_dics, filename)
 
@@ -127,6 +130,11 @@ def normalize_unicode_nfc(word):
     word_unicode_nfc = unicodedata.normalize("NFC", word_unicode_nfd) # unicode(NFD)からunicode(NFC)に変換
     word_utf8 = word_unicode_nfc.encode('utf-8') # unicode to utf-8(str)
     return word_utf8
+
+def export_line_len_csv(line_len, onomatope, write_filename):
+    write_file = open(write_filename, 'a')
+    write_str = onomatope+", "+str(line_len)+"\n"
+    write_file.write(write_str)
 
 #メイン。指定されたファイルをdef mainにかけて、結果をprintする。
 #この結果をリダイレクトしてcsvを生成していた。
