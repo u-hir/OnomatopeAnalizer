@@ -9,9 +9,8 @@ from time import sleep
 
 #onoclasslist = ["samui,tumetai", "suiteki,sitataru,otiru,haneru", "nagareru,tareru,sosogu", "simeru,nijimu", "nureru"]
 
-onoclasslist = ["hi,moeru,moyasu", "tuti,dosya,ganseki"]
+onoclasslist = ["hi,moeru,moyasu", "tuti,dosya,ganseki", "namidatu,awadatu,sizumu"]
 
-#onoclasslist = ["awateru,mogaku,otitukanai"]
 
 def main(onomatope):
 #  for onomatope in onomatopoeias:
