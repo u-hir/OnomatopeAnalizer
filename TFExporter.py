@@ -1,11 +1,12 @@
 # coding: utf-8
 import MeCab
 import glob
+import unicodedata
 
 def main():
     # 読み込むファイルのパスを取得
     sentence_paths = glob.glob('sentences/*.txt')
-    sentence_paths = filter_file(sentence_paths) # 10行未満のファイルを削除
+    sentence_paths = filter_file(sentence_paths) # 50行未満のファイルを削除
     for sentence_path in sentence_paths:
         filename = get_filename(sentence_path)
         sentence_file = open(sentence_path, 'r')
@@ -95,7 +96,8 @@ def export_tf_csv(word_dics, filename):
         write_file.write(write_line)
 
 def is_aster_or_filename(basic_type, filename):
-    return basic_type == '*' or basic_type == filename
+    filename_normalize = normalize_unicode_nfc(filename)
+    return basic_type == '*' or basic_type == filename_normalize
 
 def get_filename(path):
     # パスからファイル名を取得
@@ -110,7 +112,7 @@ def filter_file(paths):
     for path in paths:
         read_file = open(path, 'r')
         lines = read_file.readlines()
-        if len(lines) >= 10:
+        if len(lines) >= 50:
             filtered_paths.append(path)
     return filtered_paths
 
@@ -118,6 +120,14 @@ def filter_file(paths):
 def reset_file(file_path):
     write_file = open(file_path, 'w')
     write_file.write('')
+
+    # Macの濁音問題を直す
+def normalize_unicode_nfc(word):
+    word_unicode_nfd = word.decode('utf-8') # strからunicode(NFD)に変換
+    word_unicode_nfc = unicodedata.normalize("NFC", word_unicode_nfd) # unicode(NFD)からunicode(NFC)に変換
+    word_utf8 = word_unicode_nfc.encode('utf-8') # unicode to utf-8(str)
+    return word_utf8
+
 #メイン。指定されたファイルをdef mainにかけて、結果をprintする。
 #この結果をリダイレクトしてcsvを生成していた。
 if __name__ == '__main__':
