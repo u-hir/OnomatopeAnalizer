@@ -1,19 +1,15 @@
 # coding: utf-8
 import MeCab
 import glob
-import unicodedata
 
 def main():
     # 読み込むファイルのパスを取得
     sentence_paths = glob.glob('sentences/*.txt')
     sentence_paths = filter_file(sentence_paths) # 50行未満のファイルを削除
-    line_len_filename = "lines_len.csv"
-    reset_file(line_len_filename)
     for sentence_path in sentence_paths:
         filename = get_filename(sentence_path)
         sentence_file = open(sentence_path, 'r')
         lines = sentence_file.readlines()
-        export_line_len_csv(len(lines), filename, line_len_filename)
         word_dics = get_word_dics(lines, filename)
         export_tf_csv(word_dics, filename)
 
@@ -43,11 +39,9 @@ def get_word_dics(lines, filename):
             word_class = features[0]
             #feature[6]はその単語の基本形が書かれている
             basic_type = features[6]
-            
             if is_aster_or_filename(basic_type, filename): # 基本形が*の場合は記号なので、飛ばす
                 node = node.next
                 continue
-
             if word_class == "名詞":
                 nouns_count_dic.setdefault(basic_type, 0)
                 nouns_count_dic[basic_type] += 1
@@ -81,26 +75,6 @@ def export_tf_csv(word_dics, filename):
     act_dic = word_dics[1]
     adject_dic = word_dics[2]
     adverb_dic = word_dics[3]
-
-    print noun_dic
-
-    #Stopwords.txtの語句を読み込んで辞書にある場合は削除
-    for sword in open("Stopwords.txt", "r").readlines():
-        if noun_dic.get(sword.rstrip()) is None:
-            if act_dic.get(sword.rstrip()) is None:
-                if adject_dic.get(sword.rstrip()) is None:
-                    if adverb_dic.get(sword.rstrip()) is None:
-                        pass
-                    else:
-                        del(adverb_dic[sword.rstrip()])
-                else:
-                    del(adject_dic[sword.rstrip()])
-            else:
-                del(act_dic[sword.rstrip()])
-        else:
-            del(noun_dic[sword.rstrip()])
-
-
     write_path = "output/"+filename+".csv"
     reset_file(write_path)
     write_file = open(write_path, 'a')
@@ -121,8 +95,7 @@ def export_tf_csv(word_dics, filename):
         write_file.write(write_line)
 
 def is_aster_or_filename(basic_type, filename):
-    filename_normalize = normalize_unicode_nfc(filename)
-    return basic_type == '*' or basic_type == filename_normalize
+    return basic_type == '*' or basic_type == filename
 
 def get_filename(path):
     # パスからファイル名を取得
@@ -145,19 +118,6 @@ def filter_file(paths):
 def reset_file(file_path):
     write_file = open(file_path, 'w')
     write_file.write('')
-
-    # Macの濁音問題を直す
-def normalize_unicode_nfc(word):
-    word_unicode_nfd = word.decode('utf-8') # strからunicode(NFD)に変換
-    word_unicode_nfc = unicodedata.normalize("NFC", word_unicode_nfd) # unicode(NFD)からunicode(NFC)に変換
-    word_utf8 = word_unicode_nfc.encode('utf-8') # unicode to utf-8(str)
-    return word_utf8
-
-def export_line_len_csv(line_len, onomatope, write_filename):
-    write_file = open(write_filename, 'a')
-    write_str = onomatope+", "+str(line_len)+"\n"
-    write_file.write(write_str)
-
 #メイン。指定されたファイルをdef mainにかけて、結果をprintする。
 #この結果をリダイレクトしてcsvを生成していた。
 if __name__ == '__main__':
