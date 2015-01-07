@@ -43,11 +43,9 @@ def get_word_dics(lines, filename):
             word_class = features[0]
             #feature[6]はその単語の基本形が書かれている
             basic_type = features[6]
-            
             if is_aster_or_filename(basic_type, filename): # 基本形が*の場合は記号なので、飛ばす
                 node = node.next
                 continue
-
             if word_class == "名詞":
                 nouns_count_dic.setdefault(basic_type, 0)
                 nouns_count_dic[basic_type] += 1
@@ -81,26 +79,6 @@ def export_tf_csv(word_dics, filename):
     act_dic = word_dics[1]
     adject_dic = word_dics[2]
     adverb_dic = word_dics[3]
-
-    print noun_dic
-
-    #Stopwords.txtの語句を読み込んで辞書にある場合は削除
-    for sword in open("Stopwords.txt", "r").readlines():
-        if noun_dic.get(sword.rstrip()) is None:
-            if act_dic.get(sword.rstrip()) is None:
-                if adject_dic.get(sword.rstrip()) is None:
-                    if adverb_dic.get(sword.rstrip()) is None:
-                        pass
-                    else:
-                        del(adverb_dic[sword.rstrip()])
-                else:
-                    del(adject_dic[sword.rstrip()])
-            else:
-                del(act_dic[sword.rstrip()])
-        else:
-            del(noun_dic[sword.rstrip()])
-
-
     write_path = "output/"+filename+".csv"
     reset_file(write_path)
     write_file = open(write_path, 'a')
