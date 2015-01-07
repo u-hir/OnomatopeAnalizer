@@ -82,8 +82,6 @@ def export_tf_csv(word_dics, filename):
     adject_dic = word_dics[2]
     adverb_dic = word_dics[3]
 
-    print noun_dic
-
     #Stopwords.txtの語句を読み込んで辞書にある場合は削除
     for sword in open("Stopwords.txt", "r").readlines():
         if noun_dic.get(sword.rstrip()) is None:

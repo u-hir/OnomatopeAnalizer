@@ -2,6 +2,7 @@
 import sys
 import re
 import glob
+import unicodedata
 def main():
     # スニペットファイルのパスを取得
     snip_paths = glob.glob('snippets/*/*/*.txt')
@@ -38,12 +39,20 @@ def split_snippet(snippet):
 
 #指定した文字列を含むリストの要素を抽出し、リストで返す
 def extract_sentence(word, sentences):
+    word_normalize = normalize_unicode_nfc(word)
     for sentence in sentences:
-        if word in sentence:
+        if word_normalize in sentence:
             #print sentence
             return str(sentence)+'\n'
 
     return ""
+
+# Macの濁音問題を直す
+def normalize_unicode_nfc(word):
+    word_unicode_nfd = word.decode('utf-8') # strからunicode(NFD)に変換
+    word_unicode_nfc = unicodedata.normalize("NFC", word_unicode_nfd) # unicode(NFD)からunicode(NFC)に変換
+    word_utf8 = word_unicode_nfc.encode('utf-8') # unicode to utf-8(str)
+    return word_utf8
 
 if (__name__ == '__main__'):
     main()

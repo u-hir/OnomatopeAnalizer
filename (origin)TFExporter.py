@@ -1,15 +1,28 @@
 # coding: utf-8
 import MeCab
 import glob
+<<<<<<< HEAD
+=======
+import unicodedata
+>>>>>>> a81e408aa4993ed353759e22942eda6079ee5213
 
 def main():
     # 読み込むファイルのパスを取得
     sentence_paths = glob.glob('sentences/*.txt')
     sentence_paths = filter_file(sentence_paths) # 50行未満のファイルを削除
+<<<<<<< HEAD
+=======
+    line_len_filename = "lines_len.csv"
+    reset_file(line_len_filename)
+>>>>>>> a81e408aa4993ed353759e22942eda6079ee5213
     for sentence_path in sentence_paths:
         filename = get_filename(sentence_path)
         sentence_file = open(sentence_path, 'r')
         lines = sentence_file.readlines()
+<<<<<<< HEAD
+=======
+        export_line_len_csv(len(lines), filename, line_len_filename)
+>>>>>>> a81e408aa4993ed353759e22942eda6079ee5213
         word_dics = get_word_dics(lines, filename)
         export_tf_csv(word_dics, filename)
 
@@ -95,7 +108,12 @@ def export_tf_csv(word_dics, filename):
         write_file.write(write_line)
 
 def is_aster_or_filename(basic_type, filename):
+<<<<<<< HEAD
     return basic_type == '*' or basic_type == filename
+=======
+    filename_normalize = normalize_unicode_nfc(filename)
+    return basic_type == '*' or basic_type == filename_normalize
+>>>>>>> a81e408aa4993ed353759e22942eda6079ee5213
 
 def get_filename(path):
     # パスからファイル名を取得
@@ -118,6 +136,22 @@ def filter_file(paths):
 def reset_file(file_path):
     write_file = open(file_path, 'w')
     write_file.write('')
+<<<<<<< HEAD
+=======
+
+    # Macの濁音問題を直す
+def normalize_unicode_nfc(word):
+    word_unicode_nfd = word.decode('utf-8') # strからunicode(NFD)に変換
+    word_unicode_nfc = unicodedata.normalize("NFC", word_unicode_nfd) # unicode(NFD)からunicode(NFC)に変換
+    word_utf8 = word_unicode_nfc.encode('utf-8') # unicode to utf-8(str)
+    return word_utf8
+
+def export_line_len_csv(line_len, onomatope, write_filename):
+    write_file = open(write_filename, 'a')
+    write_str = onomatope+", "+str(line_len)+"\n"
+    write_file.write(write_str)
+
+>>>>>>> a81e408aa4993ed353759e22942eda6079ee5213
 #メイン。指定されたファイルをdef mainにかけて、結果をprintする。
 #この結果をリダイレクトしてcsvを生成していた。
 if __name__ == '__main__':
