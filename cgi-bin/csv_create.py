@@ -10,12 +10,12 @@ form = cgi.FieldStorage()
 
 checklist = form.getlist('check')
 
-onomatope = 
+onomatope = form['onomatope_ppp'].value
 
 csvfile = open(onomatope + ".csv", "w")
 
 print "Content-Type:text/html; charset:utf-8; \n";
-print form.getvalue("onomatope")
+print '<p>' + onomatope + '</p>'
 for item in checklist:
     print item + "</br>"
 

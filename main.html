@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta http-equive="content-type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <hr>
+    <h1>オノマトペ精錬プログラム</h1>
+    <form action="/cgi-bin/Refining.py" method="POST">
+      <p>精錬するオノマトペを入力して下さい。</p>
+      <input type="text" name="onomatope" />
+      <input type="submit" name="submit" />
+    </form>
+    <hr>
+    <h1>オノマトペ検索</h1>
+    <p>検索したいオノマトペを入力して下さい。</p>
+    <form action"/cgi-bin/OnoSearch.py" method="POST">
+      <input type="text" name="onomatope" />
+      <input type="submit" name="submit" />
+    </form>
+    <hr>
+    <h1>関連語検索</h1>
+    <p>検索したい語句を入力して下さい。</p>
+    <form action"/cgi-bin/OnoSearch.py" method="POST">
+      <input type="text" name="onomatope" />
+      <input type="submit" name="submit" />
+    </form>
+</body>
+</html>

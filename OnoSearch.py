@@ -26,8 +26,8 @@ def main():
 
 #文字列の一致を見る
 def split_snippet(snippet, outputs_file_name):
-    sentences = re.split(", ", snippet)    
-    if sys.argv[1] == sentences[0]:
+    sentences = re.split(",", snippet)
+    if sys.argv[1] in sentences[0]:
         result_dic.setdefault(str(outputs_file_name), sentences[1])
 
 #指定した文字列を含むリストの要素を抽出し、リストで返す
