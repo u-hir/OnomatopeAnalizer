@@ -3,29 +3,62 @@
 
 import cgi
 import csv
-form = cgi.FieldStorage()
+import sys
 
-csvs = ["ざあざあ","しとしと"]
-
-for name in csvs:
-    file = open(name + ".csv", read)
-    htmlprint(file)
-
-def htmlprint():
+def htmlprint(f):
     html_body = u"""
     <html>
     <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="jquery-2.1.3.min.js"></script>
     </head>
     <body>
-    <p>「雨がざあざあ降る」のように、共に使うことのあるオノマトペと単語の組み合わせ<br>にチェックを入れて下さい。</p>
-    file
+    <title>オノマトペ辞書精錬</title>
+    <h2>オノマトペ精錬プログラム</h2>
+    <p><strong>例：「雨がざあざあ降る」</strong>のように、共に使うことのあるオノマトペと単語の組み合わせにチェックを入れて下さい。</p>
+    <form action="/cgi-bin/csv_creat.py" method="POST">
     %s
+    <input type="submit" >
+    </form>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    <script type="text/javascript" src="ajax.js"></script>
     </body>
     </html>"""
     
     content = ''
-    content += "Hello %s !<br />" % form.getvalue('name', '')
+    content += "オノマトペ：<strong name='onomatope'>%s</strong> <br />" % form.getvalue('onomatope', '')
 
-    print "Content-type: text/html\n"
-    print html_body % file
+    for line in f.readlines():
+        sentence = ''
+        word = line.split(',')[0]
+        speech = line.split(',')[2]
+
+        if '名詞' in speech:
+            sentence = speech + "　" + word + ' / '  + filename
+        elif '動詞' in speech:
+            sentence = filename + ' / ' + word + "　" + speech
+        elif '形容詞' in speech:
+            sentence = speech + "　" + word + ' / '  + filename
+        elif '副詞' in speech:
+            sentence = speech + "　" + word + ' / '  + filename
+            
+        content += "<p>　<input type='checkbox' name='check' value='" + word + "'>　" + sentence + "</p>"
+
+    content = content.decode("utf-8")
+
+    print (html_body % content).encode('utf-8')
+
+
+form = cgi.FieldStorage()
+
+filename = form.getvalue(u"onomatope", '')
+
+print "Content-type: text/html\n"
+
+file = open("output/" + filename + ".csv", "r")
+htmlprint(file)
+
