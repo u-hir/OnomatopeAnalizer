@@ -7,7 +7,7 @@ import MeCab
 from time import sleep
 
 
-onoclasslist = ["toriwasure"]
+onoclasslist = ["susumu,hakobu","otiru","oreru","yureru","kiru,kireru","yaburu,yabureru","haru,kuttuku","sasu","magaru,siwagayoru"]
 
 def main(onomatope):
 #  for onomatope in onomatopoeias:
