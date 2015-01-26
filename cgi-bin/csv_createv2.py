@@ -12,7 +12,8 @@ checklist = form.getlist('check')
 
 onomatope = form['onomatope_ppp'].value
 
-csvfile = open("cgi-bin/RefiningOutputs/"+ onomatope + ".csv", "w")
+csvReader = csv.reader(open("cgi-bin/RefiningOutputs/"+ onomatope + ".csv", "rb"),delimiter='', quoterchar='|')
+print csvReader
 
 print "Content-Type:text/html; charset:utf-8; \n";
 print '<p>' + onomatope + '</p>'

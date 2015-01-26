@@ -5,8 +5,6 @@ import cgi
 import csv
 import sys
 
-#  <script type="text/javascript" src="jquery-2.1.3.min.js"></script>
-
 def htmlprint(f):
     html_body = u"""
     <html>
@@ -17,7 +15,7 @@ def htmlprint(f):
     <title>オノマトペ辞書精錬</title>
     <h2>オノマトペ精錬プログラム</h2>
     <p><strong>例：「雨がざあざあ降る」</strong>のように、共に使うことのあるオノマトペと単語の組み合わせにチェックを入れて下さい。</p>
-    <form action="/cgi-bin/csv_create.py" method="POST">
+    <form action="/cgi-bin/csv_createv2.py" method="POST">
     %s
     <input type="submit" name="csv_create">
     </form>
