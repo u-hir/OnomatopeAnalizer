@@ -10,6 +10,7 @@ html_body = u"""
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 </head>
 <body>
+<p>「雨がざあざあ降る」のように、共に使うことのあるオノマトペと単語の組み合わせ<br>にチェックを入れて下さい。</p>
 %s
 </body>
 </html>"""

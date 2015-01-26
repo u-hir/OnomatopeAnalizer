@@ -103,19 +103,19 @@ def export_tf_csv(word_dics, filename):
     reset_file(write_path)
     write_file = open(write_path, 'a')
     for k, v in sorted(noun_dic.items(),key=lambda x : float(x[1]),reverse=True):
-        write_line = k+", "+str(v)+", 名詞\n"
+        write_line = k+","+str(v)+",名詞\n"
         write_file.write(write_line)
 
     for k, v in sorted(act_dic.items(),key=lambda x : float(x[1]),reverse=True):
-        write_line = k+", "+str(v)+", 動詞\n"
+        write_line = k+","+str(v)+",動詞\n"
         write_file.write(write_line)
 
     for k, v in sorted(adject_dic.items(),key=lambda x : float(x[1]),reverse=True):
-        write_line = k+", "+str(v)+", 形容詞\n"
+        write_line = k+","+str(v)+",形容詞\n"
         write_file.write(write_line)
 
     for k, v in sorted(adverb_dic.items(),key=lambda x : float(x[1]),reverse=True):
-        write_line = k+", "+str(v)+", 副詞\n"
+        write_line = k+","+str(v)+",副詞\n"
         write_file.write(write_line)
 
 def is_aster_or_filename(basic_type, filename):
