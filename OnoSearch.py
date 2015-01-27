@@ -26,11 +26,7 @@ def main():
 
 #文字列の一致を見る
 def split_snippet(snippet, outputs_file_name):
-<<<<<<< HEAD
-    sentences = re.split(", ", snippet)    
-=======
     sentences = re.split(",", snippet)
->>>>>>> uema
     if sys.argv[1] in sentences[0]:
         result_dic.setdefault(str(outputs_file_name), sentences[1])
 
