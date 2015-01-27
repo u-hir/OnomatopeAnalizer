@@ -19,7 +19,7 @@ def main(onomatope):
 
     print onoclass + '/' + onomatope + '.txt'
     print 'stop'
-    sleep(15)
+    sleep(600)
     print 'restart'
 
     
