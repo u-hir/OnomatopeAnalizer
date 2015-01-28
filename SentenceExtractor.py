@@ -16,15 +16,20 @@ def main():
         snip_file_name = snip_txt_name_splits[0]
         snip_file_names.append(snip_file_name)
 
+    
     for i, snip_path in enumerate(snip_paths):
+        ono_sen_list = set([]) #オノマトペを含む一文のリスト
         snip_file_name = snip_file_names[i]
         write_file_path = 'sentences/'+snip_file_name+'.txt' # 書き込むファイルのパス
         reset_file(write_file_path) # ファイルを初期化
         for snip_line in open(snip_path, 'r'):
             sentences = split_snippet(snip_line) # 文ごとに分割する
-            sentence = extract_sentence(snip_file_name, sentences) # オノマトペを含む一文のみを返す
-            write_file = open(write_file_path, 'a')
-            write_file.write(sentence) # ファイルに書き込む
+            ono_sentence = extract_sentence(snip_file_name, sentences) # オノマトペを含む一文のみを返す
+            ono_sen_list.add(ono_sentence)
+#        exact_sentences = list(set(ono_sen_list)# ダブった文を削除
+        write_file = open(write_file_path, 'a')
+        write_file.writelines(ono_sen_list) # ファイルに書き込む
+
 
 # ファイルを初期化する
 def reset_file(file_path):
