@@ -6,7 +6,7 @@ import unicodedata
 def main():
     # 読み込むファイルのパスを取得
     sentence_paths = glob.glob('sentences/*.txt')
-    sentence_paths = filter_file(sentence_paths) # 50行未満のファイルを削除
+    sentence_paths = filter_file(sentence_paths) # 20行未満のファイルを削除
     line_len_filename = "lines_len.csv"
     reset_file(line_len_filename)
     for sentence_path in sentence_paths:
@@ -135,7 +135,7 @@ def filter_file(paths):
     for path in paths:
         read_file = open(path, 'r')
         lines = read_file.readlines()
-        if len(lines) >= 50:
+        if len(lines) >= 20:
             filtered_paths.append(path)
     return filtered_paths
 
